@@ -1,0 +1,306 @@
+/* Profile page. Loaded after styles.css. */
+
+
+/* ---------- Page layout ----------
+   Three columns on wide screens: ad rail, votes, account card. */
+
+.profile-layout {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+.profile-layout > .profile-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 820px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ad rail: hidden when the row runs out of room.
+   Keep the breakpoint in sync with the 1351px check in ads.js. */
+.ad-rail {
+  margin-top: 2.5rem;
+}
+
+#ad-slot-left {
+  width: 160px;
+  min-height: 600px;
+}
+
+@media (max-width: 1350px) {
+  .ad-rail {
+    display: none;
+  }
+
+  /* Without the ad, line the content up with the header */
+  .profile-layout {
+    max-width: var(--page-width);
+  }
+}
+
+
+/* ---------- Account card ---------- */
+
+/* Account card on the right. profile.js fills it: a sign-in button when signed out,
+   or the avatar, name, and email when signed in. Sticks to the top while you scroll. */
+.profile-banner {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  position: sticky;
+  top: 1.5rem;
+  width: 300px;
+  margin-top: 2.5rem;
+  padding: 1.75rem 1.5rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 6px 6px 0 var(--shadow);
+  text-align: center;
+}
+
+.banner-avatar {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 1rem;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: var(--bg);
+  object-fit: cover;
+}
+
+.banner-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.banner-email {
+  max-width: 100%;
+  margin-top: 0.3rem;
+  overflow-wrap: anywhere;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.banner-signout {
+  margin-top: 1.25rem;
+}
+
+.banner-heading {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.banner-note {
+  margin-top: 0.4rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* Reserves space while Google's sign-in button loads */
+.banner-signin {
+  min-height: 44px;
+  margin-top: 1.25rem;
+}
+
+
+/* ---------- Totals ---------- */
+
+/* Four totals: rated, scam votes, worth-it votes, and how often you match the crowd.
+   profile.js writes the numbers into the dd elements. */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+}
+
+.stat {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.stat dt {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.stat dd {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-scam dd {
+  color: var(--scam);
+}
+
+.stat-worth dd {
+  color: var(--worth);
+}
+
+
+/* ---------- Vote list ---------- */
+
+.profile-section {
+  margin-top: 2.5rem;
+}
+
+.profile-section .section-head {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vote-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.vote-item {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.1rem 1.25rem;
+}
+
+.vote-item + .vote-item,
+.vote-empty {
+  border-top: 1px solid var(--line);
+}
+
+.vote-empty {
+  padding: 1.1rem 1.25rem;
+  color: var(--ink-soft);
+}
+
+.vote-empty:first-child {
+  border-top: 0;
+}
+
+.vote-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.vote-info > a {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.vote-info .verdict-bar {
+  height: 8px;
+  margin-top: 0.75rem;
+}
+
+.vote-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+/* A smaller echo of the stamps from the Rate page */
+.vote-badge {
+  padding: 0.15rem 0.7rem;
+  border: 3px solid currentColor;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vote-badge-scam {
+  color: var(--scam);
+  transform: rotate(-3deg);
+}
+
+.vote-badge-worth {
+  color: var(--worth);
+  transform: rotate(2deg);
+}
+
+.vote-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-actions {
+  margin-top: 1.25rem;
+  text-align: right;
+}
+
+
+/* ---------- Responsive ---------- */
+
+/* Tablet and phone: one column, account card first */
+@media (max-width: 900px) {
+  .profile-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .profile-layout > .profile-main {
+    max-width: none;
+  }
+
+  .profile-banner {
+    order: -1;
+    position: static;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .profile-layout .rate-title {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .stat-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vote-item {
+    flex-wrap: wrap;
+  }
+
+  .vote-info {
+    flex-basis: calc(100% - 4rem);
+  }
+
+  .vote-side {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

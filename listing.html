@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam or Worth It? | Listing</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/listing.css">
+  <link rel="stylesheet" href="fonts/phosphor/style.css">
+</head>
+
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Scam or Worth It?</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rate.html">Rate</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main class="listing-main">
+
+    <a class="back-link" href="search.html">
+      <i class="ph-bold ph-arrow-left" aria-hidden="true"></i>
+      All listings
+    </a>
+
+
+    <!-- ============ Listing (filled by listing.js) ============ -->
+    <div id="listing-view" hidden>
+
+      <div class="listing-head">
+        <span id="listing-icon"></span>
+        <div>
+          <h1 class="listing-title" id="listing-name"></h1>
+          <p class="listing-meta" id="listing-meta"></p>
+        </div>
+      </div>
+
+      <p class="listing-blurb" id="listing-blurb"></p>
+
+      <!-- Community verdict -->
+      <section class="listing-panel" aria-labelledby="verdict-title">
+        <h2 class="panel-title" id="verdict-title">Community verdict</h2>
+
+        <p class="big-pct" id="big-pct" aria-live="polite"></p>
+        <div id="bar-slot"></div>
+
+        <dl class="count-row">
+          <div>
+            <dt>Worth it</dt>
+            <dd class="count-worth" id="count-worth"></dd>
+          </div>
+          <div>
+            <dt>Scam</dt>
+            <dd class="count-scam" id="count-scam"></dd>
+          </div>
+          <div>
+            <dt>Total votes</dt>
+            <dd id="count-total"></dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Your vote -->
+      <section class="listing-panel" aria-labelledby="vote-title">
+        <h2 class="panel-title" id="vote-title">Your vote</h2>
+
+        <div id="vote-stamps">
+          <div class="stamp-row">
+            <button type="button" class="stamp stamp-scam" data-vote="scam">Scam</button>
+            <button type="button" class="stamp stamp-worth" data-vote="worth">Worth it</button>
+          </div>
+        </div>
+
+        <div id="vote-mine" hidden>
+          <p class="mine-line" id="mine-line"></p>
+
+          <div class="rate-done-actions">
+            <button type="button" class="btn btn-small" id="mine-change"></button>
+            <button type="button" class="btn btn-small btn-danger" id="mine-remove">Remove my vote</button>
+            <a class="btn btn-small btn-primary" href="rate.html">Rate another</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+
+    <!-- ============ Not found ============ -->
+    <section class="rate-done" id="not-found" hidden>
+      <h2 class="rate-name">Listing not found</h2>
+      <p class="rate-blurb">That listing may have been removed. Try searching for it instead.</p>
+
+      <div class="rate-done-actions">
+        <a class="btn btn-primary" href="search.html">Search listings</a>
+        <a class="btn" href="index.html">Back home</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <p>Scam or Worth It? &middot; CPSC 349 Final Project by Brian Williams</p>
+  </footer>
+
+
+  <script src="database/listings.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/listing.js"></script>
+</body>
+
+</html>

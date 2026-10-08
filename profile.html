@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam or Worth It? | Profile</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="fonts/phosphor/style.css">
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+</head>
+
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Scam or Worth It?</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rate.html">Rate</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="profile.html" aria-current="page">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <div class="profile-layout">
+
+    <!-- ============ Ad rail (hidden on narrow screens) ============ -->
+    <aside class="ad-rail" aria-label="Advertisement">
+      <div id="ad-slot-left"></div>
+    </aside>
+
+
+    <!-- ============ Main column ============ -->
+    <main class="profile-main">
+
+      <h1 class="rate-title">Your ratings</h1>
+      <p class="rate-count" id="profile-summary" aria-live="polite"></p>
+
+      <!-- Totals -->
+      <dl class="stat-row" id="stat-row">
+        <div class="stat">
+          <dt>Rated</dt>
+          <dd id="stat-total">0</dd>
+        </div>
+        <div class="stat stat-scam">
+          <dt>Scam</dt>
+          <dd id="stat-scam">0</dd>
+        </div>
+        <div class="stat stat-worth">
+          <dt>Worth it</dt>
+          <dd id="stat-worth">0</dd>
+        </div>
+        <div class="stat">
+          <dt>Match the crowd</dt>
+          <dd id="stat-agree">&ndash;</dd>
+        </div>
+      </dl>
+
+      <!-- Filters and list -->
+      <section class="section profile-section" id="profile-list-section" aria-labelledby="history-title">
+
+        <div class="section-head">
+          <h2 id="history-title">Your votes</h2>
+
+          <div class="filter-row" role="group" aria-label="Filter votes">
+            <button type="button" class="btn btn-small" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="btn btn-small" data-filter="scam" aria-pressed="false">Scam</button>
+            <button type="button" class="btn btn-small" data-filter="worth" aria-pressed="false">Worth it</button>
+          </div>
+        </div>
+
+        <!-- Empty in the HTML. js/profile.js adds one row per vote here. -->
+        <ul class="vote-list" id="vote-list"></ul>
+
+        <div class="profile-actions">
+          <button type="button" class="btn btn-small btn-danger" id="clear-btn">Clear all ratings</button>
+        </div>
+
+      </section>
+
+      <!-- No ratings yet -->
+      <section class="rate-done" id="profile-empty" hidden>
+        <h2 class="rate-name">No ratings yet</h2>
+        <p class="rate-blurb">Vote Scam or Worth it on a listing and it will show up here.</p>
+
+        <div class="rate-done-actions">
+          <a class="btn btn-primary" href="rate.html">Start rating</a>
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- ============ Account card (filled by profile.js) ============ -->
+    <aside class="profile-banner" id="profile-banner" aria-label="Account">
+    </aside>
+
+  </div>
+
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <p>Scam or Worth It? &middot; CPSC 349 Final Project by Brian Williams</p>
+  </footer>
+
+
+  <script src="database/listings.js"></script>
+  <script src="database/users.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ads.js"></script>
+</body>
+
+</html>

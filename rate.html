@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam or Worth It? | Rate</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/rate.css">
+  <link rel="stylesheet" href="fonts/phosphor/style.css">
+</head>
+
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Scam or Worth It?</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rate.html" aria-current="page">Rate</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main class="rate-main">
+
+    <h1 class="rate-title">Rate a listing</h1>
+    <p class="rate-count" id="rate-count" aria-live="polite"></p>
+
+
+    <!-- ============ Card deck ============
+         The front card is up for a vote. The next one waits behind it.
+         js/rate.js fills both cards and swaps their positions after each vote. -->
+
+    <div class="deck" id="deck">
+
+      <article class="deck-card deck-back" id="card-b" aria-hidden="true">
+        <div class="deck-top">
+          <span class="deck-icon"></span>
+          <p class="deck-category"></p>
+        </div>
+        <h2 class="deck-name"></h2>
+        <p class="deck-blurb"></p>
+      </article>
+
+      <article class="deck-card deck-front" id="card-a">
+        <div class="deck-top">
+          <span class="deck-icon"></span>
+          <p class="deck-category"></p>
+        </div>
+        <h2 class="deck-name"></h2>
+        <p class="deck-blurb"></p>
+      </article>
+
+    </div>
+
+
+    <!-- ============ Vote buttons ============ -->
+    <div id="vote-area">
+      <div class="stamp-row">
+        <button type="button" class="stamp stamp-scam" data-vote="scam">Scam</button>
+        <button type="button" class="stamp stamp-worth" data-vote="worth">Worth it</button>
+      </div>
+
+      <div class="rate-actions">
+        <button type="button" class="btn btn-primary" id="skip-btn">Skip this one</button>
+      </div>
+    </div>
+
+
+    <!-- ============ Result (replaces the vote buttons after voting) ============ -->
+    <div class="rate-result" id="rate-result" hidden>
+      <p class="result-vote" id="result-vote"></p>
+      <p class="listing-meta" id="result-votes"></p>
+
+      <div class="verdict-bar" id="result-bar" role="img">
+        <span class="bar-worth" id="bar-worth"></span>
+        <span class="bar-scam" id="bar-scam"></span>
+      </div>
+
+      <p class="verdict" id="result-verdict">
+        <span id="result-label"></span>
+        <span id="result-pct"></span>
+      </p>
+
+      <button type="button" class="btn btn-primary" id="next-btn">Next listing</button>
+    </div>
+
+
+    <!-- ============ All rated ============ -->
+    <section class="rate-done" id="rate-done" hidden>
+      <h2 class="rate-name">You've rated every listing</h2>
+      <p class="rate-blurb">Check your votes on your profile, or clear them to start over.</p>
+
+      <div class="rate-done-actions">
+        <a class="btn btn-primary" href="profile.html">View my ratings</a>
+        <button type="button" class="btn" id="reset-btn">Clear my ratings</button>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <p>Scam or Worth It? &middot; CPSC 349 Final Project by Brian Williams</p>
+  </footer>
+
+
+  <script src="database/listings.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/rate.js"></script>
+</body>
+
+</html>

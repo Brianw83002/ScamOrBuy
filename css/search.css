@@ -1,0 +1,76 @@
+/* Search page. Loaded after styles.css. */
+
+
+/* ---------- Search field ---------- */
+
+.search-page-form {
+  max-width: 100%;
+  margin-top: 1.5rem;
+}
+
+.search-page-form input {
+  padding: 0.85rem 1.1rem;
+  font-size: 1.1rem;
+}
+
+
+/* ---------- Filters ---------- */
+
+/* Filter bar: category, verdict, and sort dropdowns.
+   search.js reads these values every time the search changes. */
+.search-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.control label {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.control select {
+  min-width: 11rem;
+  padding: 0.55rem 0.8rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
+/* ---------- Results ---------- */
+
+.search-grid {
+  margin-top: 1.25rem;
+}
+
+/* Shown by search.js when no listing matches the current search and filters. */
+#no-results {
+  max-width: 560px;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .control,
+  .control select {
+    width: 100%;
+  }
+}

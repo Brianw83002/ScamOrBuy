@@ -1,0 +1,156 @@
+/* Home page. Loaded after styles.css. */
+
+
+/* ---------- Hero ---------- */
+
+/* Two columns on desktop: headline and search on the left, the Try one card on the right.
+   Stacks into one column below 900px. */
+.hero {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  padding: 3rem 0 0.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 4.75rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.hl-scam {
+  color: var(--scam);
+}
+
+/* Keeps "worth it?" on one line so the headline is two lines at most */
+.hl-worth {
+  color: var(--worth);
+  white-space: nowrap;
+}
+
+.hero-sub {
+  max-width: 30rem;
+  margin-top: 1.25rem;
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+}
+
+
+/* ---------- Hero card ---------- */
+
+/* The "Try one now" card. home.js fills it with a random unrated listing.
+   The "All caught up" card uses this same style. */
+.hero-card {
+  padding: 1.75rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+.hero-card-kicker {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.hero-card-body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hero-card-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.hero-done-title {
+  margin-top: 0.5rem;
+}
+
+.hero-card-meta {
+  margin-top: 0.3rem;
+  color: var(--ink-soft);
+}
+
+.hero-card-blurb {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+}
+
+.hero-card-result .result-vote {
+  margin-top: 1.25rem;
+}
+
+.hero-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+
+/* ---------- Recently added ---------- */
+
+/* "Recently added": one row per listing (icon, name, category, verdict, button).
+   home.js builds the rows. */
+.recent-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.recent-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.recent-list li + li {
+  border-top: 1px solid var(--line);
+}
+
+.recent-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-info > a {
+  font-weight: 700;
+}
+
+.recent-list .verdict {
+  flex-shrink: 0;
+  min-width: 9.5rem;
+  margin-top: 0;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .recent-list li {
+    flex-wrap: wrap;
+  }
+
+  .recent-list .verdict {
+    order: 3;
+    width: 100%;
+  }
+}

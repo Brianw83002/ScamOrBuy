@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam or Worth It? | Search</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="fonts/phosphor/style.css">
+</head>
+
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Scam or Worth It?</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rate.html">Rate</a></li>
+        <li><a href="search.html" aria-current="page">Search</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <h1 class="rate-title">Search listings</h1>
+
+    <!-- ============ Search ============ -->
+    <form class="search-form search-page-form" id="search-form" role="search">
+      <label class="visually-hidden" for="search-input">Search products and businesses</label>
+      <input id="search-input" name="q" type="search" placeholder="Search a product or business" autocomplete="off">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+
+    <!-- ============ Filters ============ -->
+    <div class="search-controls">
+
+      <div class="control">
+        <label for="category-select">Category</label>
+        <select id="category-select">
+          <option value="all">All categories</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="verdict-select">Verdict</label>
+        <select id="verdict-select">
+          <option value="all">Any verdict</option>
+          <option value="worth">Worth it</option>
+          <option value="scam">Scam</option>
+          <option value="split">Split decision</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="sort-select">Sort by</label>
+        <select id="sort-select">
+          <option value="votes">Most votes</option>
+          <option value="worth">Highest Worth it %</option>
+          <option value="scam">Highest Scam %</option>
+          <option value="name">Name (A to Z)</option>
+        </select>
+      </div>
+
+    </div>
+
+
+    <!-- ============ Results ============ -->
+    <p class="rate-count" id="result-count" aria-live="polite"></p>
+
+    <!-- Empty in the HTML. js/search.js fills this with the matching listings. -->
+    <div class="card-grid search-grid" id="results"></div>
+
+    <section class="rate-done" id="no-results" hidden>
+      <h2 class="rate-name">No listings found</h2>
+      <p class="rate-blurb">Try a different spelling, or clear the filters.</p>
+
+      <div class="rate-done-actions">
+        <button type="button" class="btn btn-primary" id="reset-filters">Clear search and filters</button>
+        <a class="btn" href="rate.html">Rate a random listing</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <p>Scam or Worth It? &middot; CPSC 349 Final Project by Brian Williams</p>
+  </footer>
+
+
+  <script src="database/listings.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/search.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam or Worth It? | Sign in</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="fonts/phosphor/style.css">
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="database/users.js"></script>
+</head>
+
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Scam or Worth It?</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rate.html">Rate</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main class="login-main">
+
+    <section class="rate-done login-card" aria-labelledby="login-title">
+
+      <span class="icon-tile icon-tile-lg" aria-hidden="true">
+        <i class="ph-bold ph-user-circle"></i>
+      </span>
+
+      <h1 class="rate-name" id="login-title">Sign in</h1>
+      <p class="rate-blurb">
+        Use your Google account to see your profile. Your votes are saved on this device either way.
+      </p>
+
+      <!-- Google sign-in -->
+      <div id="g_id_onload"
+           data-client_id="867609342677-osn4qnr5059q26va4o07600tjt0bg6e3.apps.googleusercontent.com"
+           data-callback="handleCredentialResponse"
+           data-auto_prompt="false">
+      </div>
+
+      <div class="login-button">
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large">
+        </div>
+      </div>
+
+      <p class="login-status" id="login-status" role="status" aria-live="polite" hidden></p>
+
+    </section>
+
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <p>Scam or Worth It? &middot; CPSC 349 Final Project by Brian Williams</p>
+  </footer>
+
+
+  <script>
+    function handleCredentialResponse(response) {
+      console.log("Google ID token:", response.credential);
+
+      const payload = decodeGoogleCredential(response.credential);
+      console.log("Decoded user:", payload);
+
+      addUser({
+        sub: payload.sub,
+        name: payload.name,
+        email: payload.email,
+        picture: payload.picture
+      });
+
+      const status = document.getElementById("login-status");
+      status.textContent = "Signed in as " + payload.name;
+      status.hidden = false;
+    }
+  </script>
+
+</body>
+
+</html>

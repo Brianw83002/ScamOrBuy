@@ -1,0 +1,659 @@
+/* ==========================================================================
+   Base styles shared by every page.
+   Page-specific rules live in home.css, search.css, rate.css, and so on.
+   ========================================================================== */
+
+
+/* ---------- Fonts (self-hosted) ---------- */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-800.woff2") format("woff2");
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---------- Design tokens ---------- */
+
+:root {
+  /* Colour */
+  --ink: #ffffff;                 /* main text */
+  --ink-soft: #c9d7fa;            /* secondary text */
+  --on-light: #0b1b4d;            /* text on yellow or white fills */
+  --bg: #1e40af;                  /* page background */
+  --card: #14307f;                /* cards and inputs */
+  --banner: #0b1b4d;              /* header and verdict chips */
+  --shadow: #0b1b4d;              /* hard offset shadows */
+  --line: rgba(255, 255, 255, 0.28);
+  --highlight: #ffd84d;           /* primary buttons and focus ring */
+  --scam: #ff6b7a;
+  --scam-soft: #ffb3bb;           /* scam red for small text (4.5:1 on blue) */
+  --worth: #4ade80;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Shape and layout */
+  --radius: 6px;
+  --page-width: 1080px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;             /* dark dropdowns, scrollbars, form controls */
+}
+
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Every page's content sits in one centred column, up to --page-width wide.
+   profile-main overrides this inside its own layout (see profile.css). */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--ink);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--highlight);
+  outline-offset: 2px;
+}
+
+/* Hides an element visually but keeps it for screen readers.
+   Used for the search field labels, which the design doesn't show. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+
+/* ---------- Header and navigation ---------- */
+
+.site-header {
+  position: relative;
+  z-index: 10;                    /* keeps the Rate deck under the banner */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding: 1rem max(1.25rem, calc((100% - var(--page-width)) / 2 + 1.25rem));
+  background: var(--banner);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  display: block;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.nav-list a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-list a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--on-light);
+}
+
+
+/* ---------- Section layout ---------- */
+
+.section {
+  margin-top: 3.5rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-head h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.section-head a {
+  font-weight: 600;
+}
+
+.rate-title {
+  margin-top: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.rate-count {
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+}
+
+.listing-meta {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.site-footer {
+  padding: 1.5rem 1.25rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+
+/* ---------- Buttons ---------- */
+
+/* Base button. Variants layer on top of this:
+   .btn-primary (yellow), .btn-small (compact), .btn-danger (red outline). */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.25rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--on-light);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-primary {
+  background: var(--highlight);
+  border-color: var(--highlight);
+  color: var(--on-light);
+}
+
+.btn-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-light);
+}
+
+.btn-small {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Destructive actions: remove a vote, clear everything */
+.btn-danger {
+  background: transparent;
+  border-color: var(--scam-soft);
+  color: var(--scam-soft);
+}
+
+.btn-danger:hover {
+  background: var(--scam-soft);
+  border-color: var(--scam-soft);
+  color: var(--on-light);
+}
+
+
+/* ---------- Search field ---------- */
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 34rem;
+  margin-top: 1.75rem;
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.search-form input::placeholder {
+  color: var(--ink-soft);
+}
+
+
+/* ---------- Stamps ----------
+   The memorable element: heavy, slightly tilted, ink-bordered.
+   Each stamp sets --tone (its colour) and --tilt (its angle). */
+
+.stamp {
+  flex: 1;
+  padding: 0.9rem 0.5rem;
+  border: 4px solid var(--tone, var(--ink));
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--tone, var(--ink));
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+}
+
+.stamp:hover,
+.stamp:focus-visible {
+  background: var(--tone, var(--ink));
+  color: var(--card);
+  transform: rotate(var(--tilt, 0deg)) scale(1.05);
+}
+
+/* Pressed: the stamp lands */
+.stamp:active {
+  transform: rotate(var(--tilt, 0deg)) scale(0.96);
+}
+
+/* Each stamp only sets its colour and tilt. The shared .stamp rules do the rest. */
+.stamp-scam {
+  --tone: var(--scam);
+  --tilt: -3deg;
+}
+
+.stamp-worth {
+  --tone: var(--worth);
+  --tilt: 2deg;
+}
+
+.stamp-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+
+/* ---------- Category icon tile ---------- */
+
+.icon-tile {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+  font-size: 1.4rem;
+}
+
+.icon-tile-lg {
+  width: 4rem;
+  height: 4rem;
+  font-size: 2rem;
+}
+
+
+/* ---------- Listing cards ---------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* One listing as a card. Used by the popular grid on home and by search results.
+   The card is a flex column so the bar and chip line up across a row. */
+.listing-card {
+  position: relative;             /* anchors the stretched title link */
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), border-color 0.18s ease;
+}
+
+.listing-card:hover,
+.listing-card:focus-within {
+  transform: translateY(-3px);
+  border-color: var(--ink);
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.listing-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.listing-card h3 a {
+  text-decoration: none;
+}
+
+/* The whole card is clickable through the title link */
+.listing-card h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.listing-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.listing-card h3 a:focus-visible {
+  outline-offset: 4px;
+}
+
+/* flex: 1 pushes the bar to the bottom so bars line up across a row */
+.card-blurb {
+  display: -webkit-box;
+  flex: 1;
+  margin-top: 0.9rem;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.card-foot {
+  margin-top: 0.9rem;
+}
+
+.card-voted {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+
+/* ---------- Verdict bar and chip ----------
+   Bar: green = Worth it, red = Scam.
+   Chip: a dark plate so the coloured text stays readable. */
+
+.verdict-bar {
+  display: flex;
+  height: 12px;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.bar-worth {
+  background: var(--worth);
+}
+
+.bar-scam {
+  background: var(--scam);
+}
+
+.verdict {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.7rem;
+  border-left: 4px solid currentColor;
+  border-radius: var(--radius);
+  background: var(--banner);
+  font-weight: 700;
+}
+
+.verdict-worth {
+  color: var(--worth);
+}
+
+.verdict-scam {
+  color: var(--scam);
+}
+
+.verdict-split {
+  color: var(--ink);
+}
+
+
+/* ---------- Shared states: empty, finished, and results ---------- */
+
+/* Boxed panel for "empty" and "finished" messages: no ratings yet,
+   no search results, all rated, listing not found, and the sign-in card. */
+.rate-done {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+.rate-name {
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.rate-blurb {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.rate-done-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.result-vote {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+
+/* ---------- Entry motion ----------
+   Hero reads first, then the rest. Use .delay-N with .fade-up to stagger. */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Plays once when the element appears. Each .delay-N step adds 70ms,
+   so elements with delay-1 and delay-2 come in one after the other. */
+.fade-up {
+  animation: fade-up 0.6s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.delay-1 { --i: 1; }
+.delay-2 { --i: 2; }
+.delay-3 { --i: 3; }
+
+.verdict-bar.animate span {
+  transform-origin: left;
+  animation: bar-grow 0.7s var(--ease) both;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Phone layout: everything stacks into one column and the header wraps.
+   Each page's own CSS file has its own phone rules too. */
+@media (max-width: 560px) {
+  .site-header {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
+  /* Logo on top, the four links share the second row */
+  nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    justify-content: space-between;
+  }
+
+  .nav-list a {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-form,
+  .stamp-row {
+    flex-direction: column;
+  }
+
+  .section-head {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .rate-done {
+    padding: 1.5rem;
+  }
+}
+
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .listing-card:hover,
+  .listing-card:focus-within {
+    transform: none;
+  }
+}

@@ -1,0 +1,36 @@
+/* Sign-in page. Loaded after styles.css. */
+
+
+.login-main {
+  max-width: 520px;
+  padding-top: 3rem;
+}
+
+/* Sign-in card. It reuses the .rate-done box from styles.css and adds a centred column. */
+.login-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  margin-top: 0;
+}
+
+.login-card .icon-tile {
+  margin-bottom: 1rem;
+}
+
+/* Reserves space while Google's sign-in button loads */
+.login-button {
+  min-height: 44px;
+  margin-top: 1.5rem;
+}
+
+.login-status {
+  margin-top: 1rem;
+  padding: 0.4rem 0.7rem;
+  border-left: 4px solid var(--worth);
+  border-radius: var(--radius);
+  background: var(--banner);
+  color: var(--worth);
+  font-weight: 700;
+}

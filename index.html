@@ -1,11 +1,134 @@
-
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scam or Worth It? | Home</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="fonts/phosphor/style.css">
 </head>
+
 <body>
-    
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Scam or Worth It?</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="rate.html">Rate</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+
+      <div class="hero-text">
+        <h1 class="fade-up">
+          <span class="hl-scam">Scam</span> or <span class="hl-worth">worth it?</span>
+        </h1>
+
+        <p class="hero-sub fade-up delay-1">
+          Ask the people who already tried it. Quick verdicts on products, restaurants, and companies.
+        </p>
+
+        <form class="search-form fade-up delay-2" action="search.html" method="get" role="search">
+          <label class="visually-hidden" for="hero-search">Search products and businesses</label>
+          <input id="hero-search" name="q" type="search" placeholder="Search a product or business">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+
+      <!-- Filled by home.js with a random listing you have not rated yet -->
+      <div class="hero-card fade-up delay-3" id="hero-card" aria-labelledby="try-title" hidden>
+        <p class="hero-card-kicker" id="try-title">Try one now</p>
+
+        <div class="hero-card-body">
+          <span id="hero-icon"></span>
+          <div>
+            <h2 class="hero-card-name" id="hero-name"></h2>
+            <p class="hero-card-meta" id="hero-meta"></p>
+          </div>
+        </div>
+
+        <p class="hero-card-blurb" id="hero-blurb"></p>
+
+        <div class="stamp-row" id="hero-stamps">
+          <button type="button" class="stamp stamp-scam" data-vote="scam">Scam</button>
+          <button type="button" class="stamp stamp-worth" data-vote="worth">Worth it</button>
+        </div>
+
+        <!-- Shown after a vote -->
+        <div class="hero-card-result" id="hero-result" hidden>
+          <p class="result-vote" id="hero-result-vote"></p>
+          <div id="hero-result-stats"></div>
+
+          <div class="hero-card-links">
+            <button type="button" class="btn btn-primary" id="hero-another">Try another</button>
+            <a class="btn" href="rate.html">Keep rating</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shown if every listing has already been rated -->
+      <div class="hero-card" id="hero-done" hidden>
+        <p class="hero-card-kicker">All caught up</p>
+        <h2 class="hero-card-name hero-done-title">You've rated every listing</h2>
+
+        <div class="hero-card-links">
+          <a class="btn btn-primary" href="profile.html">View my ratings</a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============ Popular ============ -->
+    <section class="section" aria-labelledby="popular-title">
+      <div class="section-head">
+        <h2 id="popular-title">Popular listings</h2>
+        <a href="search.html">See all listings</a>
+      </div>
+
+      <!-- Empty in the HTML. js/home.js adds the six most-voted listings here. -->
+      <div class="card-grid" id="popular-grid"></div>
+    </section>
+
+
+    <!-- ============ Recently added ============ -->
+    <section class="section" aria-labelledby="recent-title">
+      <div class="section-head">
+        <h2 id="recent-title">Recently added</h2>
+        <a href="rate.html">Rate a random listing</a>
+      </div>
+
+      <!-- Empty in the HTML. js/home.js adds the four newest listings here. -->
+      <ul class="recent-list" id="recent-list"></ul>
+    </section>
+
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <p>Scam or Worth It? &middot; CPSC 349 Final Project by Brian Williams</p>
+  </footer>
+
+
+  <!-- Load order matters: the data first, then the shared helpers, then this page's script. -->
+  <script src="database/listings.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
 </body>
+
 </html>

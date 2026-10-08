@@ -1,0 +1,105 @@
+/* Rate page. Loaded after styles.css. */
+
+
+.rate-main {
+  max-width: 560px;
+}
+
+
+/* ---------- Deck ----------
+   Both cards share one grid cell. The front card is up for a vote,
+   and the next one waits behind it, peeking out at the bottom. */
+
+.deck {
+  display: grid;
+  margin-top: 1.5rem;
+  padding-bottom: 1.5rem;         /* room for the card peeking out */
+}
+
+.deck-card {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 12rem;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 6px 6px 0 var(--shadow);
+  will-change: transform;
+}
+
+.deck-front {
+  z-index: 2;
+}
+
+/* Keep in sync with BACK_POSE in rate.js */
+.deck-back {
+  z-index: 1;
+  transform: translateY(14px) scale(0.95);
+}
+
+.deck-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.deck-category {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.deck-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.deck-blurb {
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+}
+
+
+/* ---------- Vote buttons and result ---------- */
+
+/* Stamps stay side by side on phones */
+.rate-main .stamp-row {
+  flex-direction: row;
+  margin-top: 0.5rem;
+}
+
+.rate-actions {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+/* Shown after a vote in place of the stamps. It has the community totals and
+   a Next button. rate.js toggles it on and off. */
+.rate-result {
+  margin-top: 0.5rem;
+  padding: 1.25rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.rate-result .verdict-bar {
+  margin-top: 0.75rem;
+}
+
+.rate-result .btn {
+  margin-top: 1.25rem;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .deck-name {
+    font-size: 1.35rem;
+  }
+}
