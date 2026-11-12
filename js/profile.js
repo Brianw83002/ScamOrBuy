@@ -160,7 +160,7 @@ $("clear-btn").addEventListener("click", () => {
 
 // --- Login banner ---
 
-const CLIENT_ID = "867609342677-osn4qnr5059q26va4o07600tjt0bg6e3.apps.googleusercontent.com";
+const CLIENT_ID = "943172599710-h0sdcf947048ntnjkm2mucfn8bc6027t.apps.googleusercontent.com";
 
 function handleCredentialResponse(response) {
   const payload = decodeGoogleCredential(response.credential);
@@ -239,3 +239,5 @@ function renderBanner() {
 
 render();
 renderBanner();
+// The Google script loads async; redraw once it's ready so the sign-in button appears.
+window.addEventListener("load", renderBanner);
